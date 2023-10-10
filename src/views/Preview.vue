@@ -1,8 +1,10 @@
 <template>
-  <div class="preview">
+  <div v-if="$store.isSaved" class="preview">
     <div class="person_info">
       <p class="info">Персональные данные</p>
-      <p class="info_name">{{ person.name }}, {{ person.age }}</p>
+      <p class="info_name">
+        {{ person.name }}, {{ person.age }}
+      </p>
     </div>
     <div class="children_info">
       <p class="info">Дети</p>

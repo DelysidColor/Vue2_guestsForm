@@ -16,7 +16,7 @@
           <button
             type="button"
             class="add_kid_btn"
-            :disabled="person.children.length > 4"
+            v-show="person.children.length < 5"
             @click="addChild">
             <img src="@/assets/plus/plusPlus.png" class="plus" /> Добавить
             ребенка
@@ -49,15 +49,17 @@ export default {
         age: "",
       };
       this.person.children.push(child);
+			this.$store.isSaved = false;
     },
     removeChild(index) {
       if (index < this.person.children.length) {
         this.person.children.splice(index, 1);
+        this.$store.isSaved = false;
       }
     },
     saveInfo() {
-      console.log(this.person);
       this.$store.commit("savePerson", this.person);
+      this.$store.isSaved = true;
     },
   },
 };
@@ -121,11 +123,6 @@ export default {
   background-color: rgb(240, 240, 240);
 }
 
-.add_kid_btn:disabled {
-  border-color: rgb(230, 230, 230);
-  background-color: rgb(240, 240, 240);
-}
-
 .add_kid img {
   margin-right: 10px;
 }
@@ -144,11 +141,11 @@ export default {
 }
 
 .save_btn:hover {
-	background-color: rgb(93, 195, 246);
+  background-color: rgb(93, 195, 246);
 }
 
 .save_btn:active {
-	background-color: rgb(1, 123, 185);
+  background-color: rgb(1, 123, 185);
 }
 
 .children_list {

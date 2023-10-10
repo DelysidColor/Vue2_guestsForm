@@ -7,6 +7,7 @@ export default createStore({
 			age: "",
 			children: [],
 		},
+		isSaved: false,
   },
   getters: {
   },
