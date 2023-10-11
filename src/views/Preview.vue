@@ -1,14 +1,12 @@
 <template>
   <div v-if="$store.isSaved" class="preview">
-    <div class="person_info">
+    <div class="storedPerson_info">
       <p class="info">Персональные данные</p>
-      <p class="info_name">
-        {{ person.name }}, {{ person.age }}
-      </p>
+      <p class="info_name">{{ storedPerson.name }}, {{ storedPerson.age }}</p>
     </div>
     <div class="children_info">
       <p class="info">Дети</p>
-      <div v-for="(child, index) in person.children" :key="index">
+      <div v-for="(child, index) in storedPerson.children" :key="index">
         <p class="info_name">
           <span class="kid">{{ child.name }}, {{ child.age }}</span>
         </p>
@@ -19,8 +17,8 @@
 <script>
 export default {
   computed: {
-    person() {
-      return this.$store.state.person;
+    storedPerson() {
+      return this.$store.state.storedPerson;
     },
   },
 };
@@ -33,7 +31,7 @@ export default {
   left: 280px;
 }
 
-.person_info {
+.storedPerson_info {
   margin-bottom: 50px;
 }
 

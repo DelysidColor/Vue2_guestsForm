@@ -49,12 +49,10 @@ export default {
         age: "",
       };
       this.person.children.push(child);
-			this.$store.isSaved = false;
     },
     removeChild(index) {
       if (index < this.person.children.length) {
         this.person.children.splice(index, 1);
-        this.$store.isSaved = false;
       }
     },
     saveInfo() {

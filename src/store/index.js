@@ -7,6 +7,11 @@ export default createStore({
 			age: "",
 			children: [],
 		},
+		storedPerson: {
+			name: "",
+			age: "",
+			children: [],
+		},
 		isSaved: false,
   },
   getters: {
@@ -14,6 +19,7 @@ export default createStore({
   mutations: {
 		savePerson(state, payload) {
 			state.person = payload
+			state.storedPerson = JSON.parse(JSON.stringify(state.person))
 		}
   },
   actions: {
