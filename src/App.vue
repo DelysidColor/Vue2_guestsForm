@@ -47,7 +47,7 @@
 }
 
 .nav_links a {
-  color: rgba (17, 17, 17, 0.48);
+  color: rgb(182, 180, 180);
   margin-right: 20px;
   text-decoration: none;
 }
