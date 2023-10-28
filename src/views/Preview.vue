@@ -1,11 +1,12 @@
 <template>
   <div v-if="$store.isSaved" class="preview">
     <div class="storedPerson_info">
-      <p class="info">Персональные данные</p>
+      <router-link :to="{ name: 'formEditor' }">Edit</router-link>
+      <p class="info">Personal info</p>
       <p class="info_name">{{ storedPerson.name }}, {{ storedPerson.age }}</p>
     </div>
     <div class="children_info">
-      <p class="info">Дети</p>
+      <p class="info">Children</p>
       <div v-for="(child, index) in storedPerson.children" :key="index">
         <p class="info_name">
           <span class="kid">{{ child.name }}, {{ child.age }}</span>
@@ -33,6 +34,18 @@ export default {
 
 .storedPerson_info {
   margin-bottom: 50px;
+}
+
+.storedPerson_info a {
+  color: rgb(182, 180, 180);
+  text-decoration: none;
+}
+.storedPerson_info a:hover {
+  color: grey;
+}
+
+.storedPerson_info a:active {
+  color: #59c79f;
 }
 
 .info {

@@ -2,7 +2,7 @@
   <div class="form">
     <form @submit.prevent="saveInfo">
       <div class="personal">
-        <p>Персональные данные</p>
+        <p>Personal info</p>
         <input type="text" v-model="person.name" placeholder="Имя" required />
         <input
           type="number"
@@ -12,30 +12,32 @@
       </div>
       <div class="kids">
         <div class="title_btn">
-          <p>Дети (макс. 5)</p>
+          <p>Children (max 5)</p>
           <button
             type="button"
             class="add_kid_btn"
             v-show="person.children.length < 5"
             @click="addChild">
-            <img src="@/assets/plus/plusPlus.png" class="plus" /> Добавить
-            ребенка
+            <img src="@/assets/plus/plusPlus.png" class="plus" /> Add child
           </button>
         </div>
         <ChildrenList
           :children="person.children"
           @remove="removeChild($event)" />
-        <button type="submit" class="save_btn">Сохранить</button>
+        <button type="submit" class="save_btn">Save</button>
       </div>
     </form>
+    <MyModal v-if="$store.isSaved" />
   </div>
 </template>
 
 <script>
 import ChildrenList from "@/components/ChildrenList";
+import MyModal from "@/components/ui/MyModal.vue";
 export default {
   components: {
     ChildrenList,
+    MyModal,
   },
   computed: {
     person() {
@@ -58,6 +60,11 @@ export default {
     saveInfo() {
       this.$store.commit("savePerson", this.person);
       this.$store.isSaved = true;
+      this.$store.state.person = {
+        name: "",
+        age: "",
+        children: [],
+      };
     },
   },
 };
