@@ -1,29 +1,48 @@
 <template>
-  <div class="modal-shadow">
-    <div class="modal">
-      <div class="modal-close" @click="closeModal">&#10006;</div>
-      <slot name="body">
-        <div class="modal-footer">
-          <button class="modal-footer__button" @click="closeModal">Ок</button>
-        </div>
-      </slot>
+  <div class="modal" v-if="show" @click="hideModal">
+    <div class="modal__content">
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      show: false,
-    };
+  name: "my-modal",
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
-    closeModal() {
-      this.show = false;
+    hideModal() {
+      this.$emit("update:show", false);
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.modal {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+}
+
+.modal__content {
+  margin: auto;
+  background: white;
+  border-radius: 10px;
+  min-height: 50px;
+  min-width: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

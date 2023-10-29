@@ -24,20 +24,29 @@
         <ChildrenList
           :children="person.children"
           @remove="removeChild($event)" />
-        <button type="submit" class="save_btn">Save</button>
+        <button type="button" class="save_btn" @click="saveInfo()">Save</button>
+        <my-modal v-model:show="modalVisible">
+          <h3>Saved Successfully</h3>
+          <button class="modal_btn">OK</button>
+        </my-modal>
       </div>
     </form>
-    <MyModal v-if="$store.isSaved" />
   </div>
 </template>
 
 <script>
 import ChildrenList from "@/components/ChildrenList";
 import MyModal from "@/components/ui/MyModal.vue";
+
 export default {
   components: {
     ChildrenList,
     MyModal,
+  },
+  data() {
+    return {
+      modalVisible: false,
+    };
   },
   computed: {
     person() {
@@ -60,6 +69,7 @@ export default {
     saveInfo() {
       this.$store.commit("savePerson", this.person);
       this.$store.isSaved = true;
+      this.modalVisible = true;
       this.$store.state.person = {
         name: "",
         age: "",
