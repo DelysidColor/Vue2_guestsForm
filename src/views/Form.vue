@@ -24,7 +24,7 @@
         <ChildrenList
           :children="person.children"
           @remove="removeChild($event)" />
-        <button type="button" class="save_btn" @click="saveInfo()">Save</button>
+        <button type="submit" class="save_btn">Save</button>
         <my-modal v-model:show="modalVisible">
           <h3>Saved Successfully</h3>
           <button class="modal_btn">OK</button>
